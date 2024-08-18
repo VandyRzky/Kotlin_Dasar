@@ -10,4 +10,5 @@ fun main(args: Array<String>) {
     
     println(benar)
     println(salah)
+    println(benar)
 }

@@ -6,8 +6,8 @@ fun main(args: Array<String>) {
     //mutable
     var tes: String? = null
     tes = "mutable"
-    //immutable
     var tes2 = 1212
+    //immutable
     val immutable = "Inmmutable variable"
 
     println(tes)
