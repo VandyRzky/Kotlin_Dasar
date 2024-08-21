@@ -26,13 +26,25 @@ fun String.hello2(): String { //Extension Function
     return "Hello $this"
 } 
 
-infix fun String.ke (type: String): String{ //infix notation
-    when(type){
-        "UP" -> {
-            return this.toUpperCase()
-        }
-        else -> return this.toLowerCase()
+// infix fun String.ke (type: String): String{ //infix notation
+//     when(type){
+//         "UP" -> {
+//             return this.toUpperCase()
+//         }
+//         else -> return this.toLowerCase()
+//     }
+// }
+
+fun faktorial(a: Int): Int{ //rekursif
+    return when (a){
+        1 -> 1
+        else -> a * faktorial(a-1)
     }
+}
+
+fun higherOrderFunction(name: String, pengubah: (String) -> String): String{
+    val nameTransform = pengubah(name)
+    return "hello $nameTransform"
 }
 
 fun main(args: Array<String>) {
@@ -44,11 +56,30 @@ fun main(args: Array<String>) {
     println(cobaVarargs(5,5,5,5))
     val name = "hero"
     println(name.hello2())
-    val cobaInfix = "hero" ke "UP"
-    println(cobaInfix)
+    // val cobaInfix = "hero" ke "UP"
+    // println(cobaInfix)
 
     fun sayHello(){ //function scope == function dalam function
         println ("Hello")
     }
     sayHello()
+    println(faktorial(4))
+
+    val lamdaFunction: (String) -> String = { name: String -> //lamda expression
+        val hasil = "Halo $name"
+        hasil
+    }
+    println(lamdaFunction("hero"))
+
+    val upper = {value: String -> value.toUpperCase()}
+    println(higherOrderFunction("hero", upper))
+
+    val upper1 = fun(value: String): String{ //anonymous function
+        if (value == ""){
+            return "error"
+        }
+        return value.toUpperCase()
+    }
+    println(higherOrderFunction("helo", upper1))
+
 }
