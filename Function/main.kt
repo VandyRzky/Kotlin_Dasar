@@ -47,6 +47,11 @@ fun higherOrderFunction(name: String, pengubah: (String) -> String): String{
     return "hello $nameTransform"
 }
 
+inline fun inlineFunction (name: () -> String): String{//inline function
+    val panggilNama = name()
+    return "hello $panggilNama"
+}
+
 fun main(args: Array<String>) {
     hello("Hero", null)
     hello(firstName = "hero", lastName = "hero2")
@@ -71,7 +76,7 @@ fun main(args: Array<String>) {
     }
     println(lamdaFunction("hero"))
 
-    val upper = {value: String -> value.toUpperCase()}
+    val upper = {value: String -> value.toUpperCase()} //lamda
     println(higherOrderFunction("hero", upper))
 
     val upper1 = fun(value: String): String{ //anonymous function
@@ -81,5 +86,17 @@ fun main(args: Array<String>) {
         return value.toUpperCase()
     }
     println(higherOrderFunction("helo", upper1))
+
+
+    //closure
+    var counter = 1
+    val lamdaCounter = {
+        println(counter)
+        counter ++
+    }
+    lamdaCounter()
+    println(counter)
+
+    println(inlineFunction({"wwwww"}))//inline function
 
 }
